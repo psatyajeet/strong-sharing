@@ -67,11 +67,12 @@ async function parseWorkoutsAsStravaActivities() {
 }
 
 export async function pullNewWorkoutsAndUpload() {
+  console.log('Pulling new workouts...');
   const parsedStravaWorkouts = await parseWorkoutsAsStravaActivities();
-
+  console.log(`Found ${parsedStravaWorkouts.length} new workouts...`);
   for (const workout of parsedStravaWorkouts) {
     const result = await uploadActivity(workout);
   }
-
+  console.log(`Uploaded ${parsedStravaWorkouts.length} new workouts...`);
   return true;
 }

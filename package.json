@@ -4,9 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf dst",
+    "build": "npm run clean && tsc",
+    "jobs": "npm run build; node dst/jobs.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/cron": "^1.7.1",
+    "@types/lodash": "^4.14.149",
+    "@types/moment-timezone": "^0.5.12",
+    "axios": "^0.19.0",
+    "cron": "^1.7.2",
+    "dotenv": "^8.2.0",
+    "lodash": "^4.17.15",
+    "moment-timezone": "^0.5.27",
+    "prettier": "^1.19.1",
+    "redis": "^3.0.2",
+    "rimraf": "^3.0.0",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.4"
+  }
 }

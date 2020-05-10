@@ -45,8 +45,10 @@ async function parseWorkoutsAsStravaActivities() {
               )} lbs\n`;
             }
           }
-          description += '\n Entered from Strong app\n';
+          description += '\n';
         }
+
+        description += '\nEntered from Strong app';
 
         const newStravaActivity = {
           name,

@@ -17,8 +17,8 @@ async function getCredentials() {
     method: 'post',
     url: 'https://www.strava.com/api/v3/oauth/token',
     data: {
-      client_id: process.env.CLIENT_ID,
-      client_secret: process.env.CLIENT_SECRET,
+      client_id: process.env.STRAVA_CLIENT_ID,
+      client_secret: process.env.STRAVA_CLIENT_SECRET,
       grant_type: 'refresh_token',
       refresh_token,
     },

@@ -26,10 +26,10 @@ async function parseWorkoutsAsStravaActivities() {
 
     if (completionDate) {
       const startTime = moment.tz(startDate.iso, 'America/Los_Angeles');
-      const hoursAgo = moment().diff(startTime, 'hours');
-      if (hoursAgo <= CHECK_FREQUENCY_HOURS) {
-        const endTime = moment.tz(completionDate.iso, 'America/Los_Angeles');
+      const endTime = moment.tz(completionDate.iso, 'America/Los_Angeles');
+      const hoursAgo = moment().diff(endTime, 'hours');
 
+      if (hoursAgo <= CHECK_FREQUENCY_HOURS) {
         let description = '';
         for (const {
           parseSetsDictionary: sets,
@@ -69,6 +69,7 @@ async function parseWorkoutsAsStravaActivities() {
 export async function pullNewWorkoutsAndUpload() {
   console.log('Pulling new workouts...');
   const parsedStravaWorkouts = await parseWorkoutsAsStravaActivities();
+  console.log(parsedStravaWorkouts);
   console.log(`Found ${parsedStravaWorkouts.length} new workouts...`);
   for (const workout of parsedStravaWorkouts) {
     const result = await uploadActivity(workout);
@@ -76,3 +77,5 @@ export async function pullNewWorkoutsAndUpload() {
   console.log(`Uploaded ${parsedStravaWorkouts.length} new workouts...`);
   return true;
 }
+
+pullNewWorkoutsAndUpload().then(() => process.exit(0));

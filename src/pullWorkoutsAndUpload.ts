@@ -77,5 +77,3 @@ export async function pullNewWorkoutsAndUpload() {
   console.log(`Uploaded ${parsedStravaWorkouts.length} new workouts...`);
   return true;
 }
-
-pullNewWorkoutsAndUpload().then(() => process.exit(0));

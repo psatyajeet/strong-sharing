@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import _ from 'lodash';
 import moment from 'moment-timezone';
+
 import { uploadActivity } from './strava';
 import { getWorkouts } from './strong';
 
@@ -77,3 +78,5 @@ export async function pullNewWorkoutsAndUpload() {
   console.log(`Uploaded ${parsedStravaWorkouts.length} new workouts...`);
   return true;
 }
+
+pullNewWorkoutsAndUpload();

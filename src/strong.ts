@@ -33,8 +33,7 @@ export async function getWorkouts() {
 
     return response.data;
   } catch (error) {
-    console.log(error.response.body);
-
+    console.log(error.response);
     return [];
   }
 }

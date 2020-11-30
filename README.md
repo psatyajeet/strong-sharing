@@ -15,3 +15,9 @@ https://www.stut-it.net/blog/2017/mitmproxy-cheatsheet.html
 brew install mitmproxy
 mitmproxy
 ```
+
+```
+On your iPhone
+Settings -> Wi-Fi -> Select Network -> Configure Proxy -> Manual
+Set server and port to whatever is your local ip address and then port 8080.
+```

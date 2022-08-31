@@ -21,7 +21,7 @@
     "cron": "^1.7.2",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.15",
-    "moment-timezone": "^0.5.27",
+    "moment-timezone": "^0.5.35",
     "prettier": "^1.19.1",
     "redis": "^3.0.2",
     "rimraf": "^3.0.0",

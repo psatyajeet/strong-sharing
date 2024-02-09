@@ -9,7 +9,9 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
-const CHECK_FREQUENCY_HOURS = parseInt(process.env.CHECK_FREQUENCY_HOURS || '');
+const CHECK_FREQUENCY_HOURS = parseInt(
+  process.env.CHECK_FREQUENCY_HOURS || "12"
+);
 const LBS_IN_KG = 2.20462;
 
 async function parseWorkoutsAsStravaActivities() {

@@ -1,25 +1,19 @@
-import axios from 'axios';
-import redis from 'redis';
-import { promisify } from 'util';
+import axios from "axios";
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
 }
 
-const redisClient = redis.createClient(process.env.REDIS_URL);
-const getAsync = promisify(redisClient.get).bind(redisClient);
-const setAsync = promisify(redisClient.set).bind(redisClient);
-
 async function getCredentials() {
-  let refresh_token = await getAsync('refresh_token');
+  const refresh_token = process.env.STRAVA_REFRESH_TOKEN;
 
   const response = await axios({
-    method: 'post',
-    url: 'https://www.strava.com/api/v3/oauth/token',
+    method: "post",
+    url: "https://www.strava.com/api/v3/oauth/token",
     data: {
       client_id: process.env.STRAVA_CLIENT_ID,
       client_secret: process.env.STRAVA_CLIENT_SECRET,
-      grant_type: 'refresh_token',
+      grant_type: "refresh_token",
       refresh_token,
     },
   });
@@ -29,10 +23,6 @@ async function getCredentials() {
     refresh_token: newRefreshToken,
     expires_at: newExpiresAt,
   } = response.data;
-
-  await setAsync('access_token', newAccessToken);
-  await setAsync('refresh_token', newRefreshToken);
-  await setAsync('expires_at', newExpiresAt);
 
   return {
     accessToken: newAccessToken,
@@ -51,8 +41,8 @@ export async function uploadActivity(activity: {
   try {
     const { accessToken } = await getCredentials();
     const result = await axios({
-      method: 'post',
-      url: 'https://www.strava.com/api/v3/activities',
+      method: "post",
+      url: "https://www.strava.com/api/v3/activities",
       headers: { Authorization: `Bearer ${accessToken}` },
       data: activity,
     });
